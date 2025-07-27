@@ -1,254 +1,50 @@
-.notCurrentCard {
-    opacity: 0.5;
-    display: block;
-}
-
-.currentCard {
-    opacity: auto;
-    display: block;
-    z-index: 999;
-}
-
-.hideCard {
-    display: none;
-}
-
-
-/*Magic happens here!*/
-
-.animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both
-}
-
-@-webkit-keyframes slideOutCenterLeft {
-    from {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-    }
-    to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-@keyframes slideCenterLeft {
-    from {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-    }
-    to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-.slideOutCenterLeft {
-    -webkit-animation-name: slideOutCenterLeft;
-    animation-name: slideOutCenterLeft;
-}
-
-@-webkit-keyframes slideOutRight {
-    from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    to {
-        /*visibility: hidden;*/
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-@keyframes slideOutRight {
-    from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    to {
-        /*visibility: hidden;*/
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-.slideOutRight {
-    -webkit-animation-name: slideOutRight;
-    animation-name: slideOutRight;
-}
-
-@-webkit-keyframes slideOutLeft {
-    from {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-    }
-    to {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-    }
-}
-
-@keyframes slideOutLeft {
-    from {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-    }
-    to {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-    }
-}
-
-.slideOutLeft {
-    -webkit-animation-name: slideOutLeft;
-    animation-name: slideOutLeft;
-}
-
-@-webkit-keyframes reverseSlideOutCenterLeft {
-    from {
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-    }
-    to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-@keyframes reverseSlideOutCenterLeft {
-    from {
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-    }
-    to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-.reverseSlideOutCenterLeft {
-    -webkit-animation-name: reverseSlideOutCenterLeft;
-    animation-name: reverseSlideOutCenterLeft;
-}
-
-@-webkit-keyframes reverseSlideOutLeft {
-    from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    to {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-@keyframes reverseSlideOutLeft {
-    from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    to {
-        -webkit-transform: scale(0.8) translate3d(-100%, 0, 0);
-        transform: scale(0.8) translate3d(-100%, 0, 0);
-        transition: all 3s ease-in-out;
-    }
-}
-
-.reverseSlideOutLeft {
-    -webkit-animation-name: reverseSlideOutLeft;
-    animation-name: reverseSlideOutLeft;
-}
-
-@-webkit-keyframes reverseSlideOutRight {
-    from {
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-    }
-    to {
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-    }
-}
-
-@keyframes reverseSlideOutRight {
-    from {
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-    }
-    to {
-        -webkit-transform: scale(0.8) translate3d(100%, 0, 0);
-        transform: scale(0.8) translate3d(100%, 0, 0);
-    }
-}
-
-.reverseSlideOutRight {
-    -webkit-animation-name: reverseSlideOutRight;
-    animation-name: reverseSlideOutRight;
-}
-
-body {
-    background-color: #D1C4E9;
-}
-
 .cards {
-    height: 650px;
-    transition: all .2s ease-out;
-    background: #4A148C;
-    width: 90vw;
-    max-width: 700px;
-    margin: auto;
-    border-radius: 19px;
-    position: fixed;
-    box-shadow: -1px 15px 30px -12px black;
-    left: 0; right: 0; top: 10%;
+  height: 650px;
+  transition: all 0.2s ease-out;
+  /* Glassmorphism effect: translucent blue + blur */
+  background: rgba(21, 101, 192, 0.85);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+
+  width: 90vw;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 19px;
+  position: fixed;
+  box-shadow: -1px 15px 30px -12px rgba(0, 0, 0, 0.5);
+  left: 0;
+  right: 0;
+  top: 10%;
+
+  /* Flexbox for perfect centering */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertically center */
+  align-items: center;      /* horizontally center */
+  padding: 40px 30px;
+  box-sizing: border-box;
+
+  /* Smooth text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-
-/*mobile devices like iphone*/
-
-@media (max-width: 461px) {
-    .cards {
-        right: 5%;
-        left: 5%;
-    }
+.cards h2 {
+  color: #bbdefb;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  max-width: 90%;
+  /* Optional: gentle fade-in animation */
+  animation: fadeInText 1s ease forwards;
+  opacity: 0;
 }
 
-
-/* big landscape tablets, laptops, and desktops */
-
-@media (min-width:1025px) {
-    .cards {
-        right: 35%;
-        left: 35%;
-    }
-}
-
-
-/* tablet, landscape iPad, lo-res laptops ands desktops */
-
-@media (min-width:641px) and (max-width:961px) {
-    .cards {
-        top: 25%;
-        right: 25%;
-        left: 25%;
-    }
-}
-
-
-/* tablet, landscape iPad, lo-res laptops ands desktops */
-
-@media (min-width:962px) and (max-width:1024px) {
-    .cards {
-        right: 30%;
-        left: 30%;
-    }
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
 }

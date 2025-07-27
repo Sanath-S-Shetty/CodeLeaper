@@ -11,7 +11,7 @@ import Dryrun from './pages/dryrun'
 import Description from './pages/description'
 import Hints from './pages/hints'
 import Gowrong from './pages/gowrong'
-import GeminiApp from './pages/Ai'
+
 
 
 

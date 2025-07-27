@@ -1,72 +1,79 @@
-/* navbar.css */
-
 nav {
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #000; /* Black background */
-  color: #00FF41; /* Matrix green text */
+  padding: 0 2rem;
+  background: rgba(21, 101, 192, 0.95); /* translucent blue */
+  color: #e3f2fd; /* light blue text */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 64px;
   z-index: 1000;
-  height: 60px;
-  box-shadow: 0 0 10px #00FF41; /* Green glow */
+  box-shadow: 0 4px 20px rgba(21, 101, 192, 0.4);
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 2px solid #29b6f6;
 }
 
+/* Brand title */
 nav h1 {
   margin: 0;
-  font-size: 2rem;
-  color: #00FF41;
-  text-shadow: 0 0 5px #00FF41;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #bbdefb; /* lighter blue */
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 8px rgba(33, 150, 243, 0.7);
 }
 
+/* Nav links container */
 nav ul {
   list-style: none;
   display: flex;
-  gap: 100px;
+  gap: 2rem;
   margin: 0;
   padding: 0;
-  margin-right: 10px;
 }
 
+/* Nav links */
 nav ul li a {
   text-decoration: none;
-  color: #00FF41;
-  display: block;
-  padding: 5px 0;
-  font-size: 1.2rem;
-  transition: 0.3s;
+  color: #e3f2fd;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
+/* Hover effect with blue glow */
 nav ul li a:hover {
-  color: #000;
-  background-color: #00FF41;
-  padding: 5px 10px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px #00FF41;
+  background: linear-gradient(90deg, #29b6f6 0%, #00bcd4 100%);
+  color: #0d47a1;
+  box-shadow: 0 6px 16px rgba(41, 182, 246, 0.45);
 }
 
+/* Responsive: mobile view */
 @media (max-width: 600px) {
   nav {
     flex-direction: column;
     align-items: flex-start;
     height: auto;
-    padding: 10px;
+    padding: 1rem;
+    backdrop-filter: saturate(180%) blur(25px);
+    -webkit-backdrop-filter: saturate(180%) blur(25px);
   }
 
   nav h1 {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 
   nav ul {
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
     width: 100%;
   }
 
@@ -76,5 +83,7 @@ nav ul li a:hover {
 
   nav ul li a {
     width: 100%;
+    text-align: left;
+    padding-left: 0;
   }
 }

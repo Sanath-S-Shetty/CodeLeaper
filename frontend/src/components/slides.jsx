@@ -1,12 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './slides.css'; 
 
-function Slides() {
+function Slides({ hints }) {
   const totalCards = 4;
   const [currentCard, setCurrentCard] = useState(0);
   const cardsRef = useRef([]);
+const lines = hints.split("\n").map(line => line.trim()).filter(Boolean);
 
-  const hint = ["Hint 1", "Hint 2", "Hint 3", "Hint 4"];
+// First line is the Problem Title
+const title = lines.length > 0 ? lines[0] : "No Title Found";
+
+// Filter lines starting with "Hint" and remove the label e.g. "Hint 1:"
+const hint = lines
+  .filter(line => line.startsWith("Hint"))
+  .map(line => line.replace(/^Hint \d+:\s*/, ""));
+
+// Optionally pad hints to 4 entries if needed
+while (hint.length < 4) {
+  hint.push("No further hint available.");
+}
+
+
+
 
   const isTouchDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 

@@ -17,7 +17,7 @@ function Solution() {
         <Link className="box" id="dry run" to={`/dryrun?query=${query}`}>dry run</Link>
       </div>
       <div className="row">
-        <Link className="box" id="code" to={`/code?query=${query}`}>code</Link>
+        <Link className="box" id="code" to={`/code?query=${query}`}>Solution</Link>
       </div>
     </div>
   );
