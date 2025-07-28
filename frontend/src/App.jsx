@@ -11,7 +11,8 @@ import Dryrun from './pages/dryrun'
 import Description from './pages/description'
 import Hints from './pages/hints'
 import Gowrong from './pages/gowrong'
-
+import About from './pages/about'
+import Contact from './pages/contact'
 
 
 
@@ -32,6 +33,8 @@ function App() {
           <Route path="/description" element={<Description />} />
           <Route path="/hints" element={<Hints />} />
           <Route path="/gowrong" element={<Gowrong />} /> 
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact/>}/>
 
         </Routes>
       </div>
