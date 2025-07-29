@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+/* GLOBAL BASE */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #0b0c1a 0%, #000010 80%);
+  font-family: 'Bitcount Prop Single', monospace, Consolas, 'Courier New', monospace;
+  color: #cde2ff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Code container styling - glowing blue card */
+.code-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background-color: rgba(10, 20, 45, 0.7);
+  border-radius: 12px;
+  box-shadow:
+    0 0 30px 3px rgba(36, 138, 222, 0.5),
+    inset 0 0 12px 1px rgba(21, 101, 192, 0.7);
+  line-height: 1.7;
+  overflow-y: auto;
+  max-height: 80vh;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
+}
+
+.code-container * {
+  color: #cce7ff !important;
+  text-shadow:
+    0 0 6px #3a82ffcc,
+    0 0 15px #1f52d3aa;
+}
+
+.code-container:hover {
+  box-shadow:
+    0 0 45px 6px rgba(41, 182, 246, 0.7),
+    inset 0 0 25px 3px rgba(21, 101, 192, 0.85);
+}
+
+/* Headings */
+.code-container h1 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #a7cdfd;
+  border-bottom: 3px solid #42aaff;
+  padding-bottom: 6px;
+  text-shadow:
+    0 0 10px #73b8ffcc,
+    0 0 20px #3cadffcc;
+}
+
+.code-container h2 {
+  margin-top: 30px;
+  font-size: 1.6em;
+  color: #4a9dff;
+  font-weight: 600;
+  text-shadow: 0 0 8px #3189ffdd;
+  letter-spacing: 0.5px;
+}
+
+/* Paragraph */
+.code-container p {
+  font-size: 1.1em;
+  background: transparent;
+  margin-top: 20px;
+  margin-bottom: 1.5em;
+  color: #cce7ff;
+  white-space: pre-line;
+  text-shadow:
+    0 0 6px #5ea8ffcc;
+}
+
+/* Code blocks */
+.code-container pre {
+  background: #090f1d;
+  color: #caf1ff;
+  border-radius: 10px;
+  box-shadow: 0 0 24px #1482b777, 0 0 2px #17254788;
+  padding: 18px 20px;
+  font-size: 1.07rem;
+  font-family: 'Fira Mono', 'JetBrains Mono', monospace;
+  margin: 24px 0;
+  overflow-x: auto !important;
+  overflow-y: auto;
+  max-width: 100%;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* Inline code */
+.code-container code {
+  background: rgba(25, 35, 52, 0.80);
+  padding: 2px 4px;
+  color: #55f0ff !important;
+  border-radius: 2px;
+  font-size: 1em;
+  font-family: inherit;
+}
+
+/* Blockquotes */
+.code-container blockquote {
+  margin: 22px 0;
+  padding-left: 16px;
+  border-left: 3px solid #47c6ff99;
+  color: #6ec3ff;
+  background: rgba(30,40,80,0.13);
+  font-size: 1.07em;
+  font-style: italic;
+  user-select: text;
+}
+
+/* Lists */
+.code-container ul,
+.code-container ol {
+  padding-left: 28px;
+  color: #afe2fa;
+}
+
+.code-container li {
+  margin: 10px 0;
+  text-shadow: 0 0 5px #2a6ad4aa;
+}
+
+/* Scrollbars for code blocks */
+.code-container pre::-webkit-scrollbar {
+  height: 8px;
+  background: #232e48;
+  border-radius: 6px;
+}
+
+.code-container pre::-webkit-scrollbar-thumb {
+  background: #3fd1fbcc;
+  border-radius: 6px;
+}
+
+.code-container pre::-webkit-scrollbar-thumb:hover {
+  background: #1e6fed;
+  box-shadow: 0 0 14px #1e6fedcc;
+}
+
+/* Scrollbars for container */
+.code-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.code-container::-webkit-scrollbar-thumb {
+  background-color: #3ea3ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #66b3ffaa;
+}
+
+.code-container::-webkit-scrollbar-thumb:hover {
+  background-color: #1e6fed;
+  box-shadow: 0 0 14px #1e6fedcc;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .code-container {
+    padding: 20px 20px 40px 20px;
+    max-width: 98vw;
+  }
+  .code-container h1 {
+    font-size: 1.6rem;
+  }
+  .code-container h2 {
+    font-size: 1.3rem;
+  }
+  .code-container pre {
+    font-size: 0.95rem;
+  }
+}

@@ -3,33 +3,49 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  background: rgba(21, 101, 192, 0.95); /* translucent blue */
-  color: #e3f2fd; /* light blue text */
+  background: rgba(10, 18, 40, 0.92); /* darker translucent black-blue */
+  color: #cde2ff; /* softer glowing blue */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 64px;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(21, 101, 192, 0.4);
   box-sizing: border-box;
-  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 2px solid #29b6f6;
+  border-bottom: 2px solid #245284;
+  box-shadow:
+    0 4px 24px rgba(10, 40, 90, 0.6),
+    0 0 20px 3px rgba(41, 182, 246, 0.5);
+  animation: glowPulseNav 6s ease-in-out infinite alternate;
 }
 
-/* Brand title */
+@keyframes glowPulseNav {
+  0% {
+    box-shadow:
+      0 4px 20px rgba(10, 40, 90, 0.5),
+      0 0 10px 2px rgba(41, 182, 246, 0.25);
+  }
+  100% {
+    box-shadow:
+      0 4px 28px rgba(10, 40, 90, 0.75),
+      0 0 30px 6px rgba(41, 182, 246, 0.7);
+  }
+}
+
 nav h1 {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 700;
-  color: #bbdefb; /* lighter blue */
+  color: #a9c7ff; /* lighter neon blue */
   letter-spacing: 1.5px;
-  text-shadow: 0 2px 8px rgba(33, 150, 243, 0.7);
+  text-shadow:
+    0 2px 10px rgba(33, 150, 243, 0.85),
+    0 0 18px #64b5f688;
+  user-select: none;
 }
 
-/* Nav links container */
 nav ul {
   list-style: none;
   display: flex;
@@ -38,25 +54,44 @@ nav ul {
   padding: 0;
 }
 
-/* Nav links */
 nav ul li a {
   text-decoration: none;
-  color: #e3f2fd;
+  color: #cce7ff;
   font-size: 1rem;
   font-weight: 500;
   padding: 8px 14px;
   border-radius: 10px;
   transition: all 0.3s ease;
+  position: relative;
+  user-select: none;
 }
 
-/* Hover effect with blue glow */
+nav ul li a::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -6px;
+  width: calc(100% + 12px);
+  height: calc(100% + 8px);
+  border-radius: 12px;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 20px 6px #3bc8ffcc;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
 nav ul li a:hover {
-  background: linear-gradient(90deg, #29b6f6 0%, #00bcd4 100%);
-  color: #0d47a1;
-  box-shadow: 0 6px 16px rgba(41, 182, 246, 0.45);
+  background: linear-gradient(90deg, #3bc8ff 0%, #00d3f5 100%);
+  color: #09396d;
+  box-shadow: 0 8px 20px rgba(59, 200, 255, 0.8);
 }
 
-/* Responsive: mobile view */
+nav ul li a:hover::before {
+  opacity: 1;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 600px) {
   nav {
     flex-direction: column;

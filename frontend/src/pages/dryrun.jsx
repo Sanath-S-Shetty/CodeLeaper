@@ -1,8 +1,9 @@
  
  import React, { useState } from "react";
  import ReactMarkdown from "react-markdown";
+ import remarkGfm from 'remark-gfm'
  import { gemini } from '../components/ai';
- import './dryrun.css';
+ import './css/dryrun.css';
  function Dryrun() {
 
       
@@ -73,7 +74,9 @@
       ) : (
         <div>
           <h2>Dry Run Result</h2>
-          <ReactMarkdown>{dryrun}</ReactMarkdown>
+         <ReactMarkdown remarkPlugins={[remarkGfm]}>
+  {dryrun}
+</ReactMarkdown>
           <button onClick={resetForm}>Try Again</button>
         </div>
       )}

@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+/* Global Reset to Prevent Unwanted Scrollbars */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;      /* Absolutely no scrollbars: vertical or horizontal */
+}
+
+.home {
+  position: relative;
+  z-index: 1;
+  height: 100dvh;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+  padding-right: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Bitcount Prop Single', sans-serif;
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(2.5px 2.5px at 9% 19%, #fffdfacc 90%, transparent 100%),
+    radial-gradient(1.9px 1.9px at 83% 25%, #badefb88 96%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 21% 74%, #7dbaffaa 94%, transparent 100%),
+    radial-gradient(3px 3px at 58% 75%, #ffffffbb 99%, transparent 100%),
+    radial-gradient(2px 2px at 54% 15%, #c2f0fff1 85%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 38% 55%, #e4eefecc 88%, transparent 100%);
+  background-repeat: repeat;
+  animation: twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.8;
+  will-change: opacity;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Heading styles - luminous glow */
+.home h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 0.3em;
+  text-shadow:
+    0 0 8px #71aaff,
+    0 0 18px #2accfd,
+    0 0 28px #71c8ffe6;
+  letter-spacing: 2px;
+}
+
+.home h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2em;
+  color: #aabaff;
+  text-shadow: 0 0 9px #35aed7cc;
+  letter-spacing: 1px;
+}
+
+/* Form container */
+form {
+  display: flex;
+  gap: 1rem;
+  z-index: 1; /* Above background stars */
+}
+
+/* Input box */
+input[type="text"] {
+  padding: 0.8em 1.2em;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 2px solid #2accfd;
+  background: #060c18;
+  color: #d0e8ff;
+  box-shadow:
+    0 0 10px #2accfdcc,
+    inset 0 0 8px #4be7ff88;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 280px;
+  outline: none;
+  font-family: inherit;
+}
+
+input[type="text"]:focus {
+  border-color: #67dbff;
+  box-shadow:
+    0 0 16px #67dbff,
+    inset 0 0 10px #a0f0ffcc;
+}
+
+/* Search button */
+button[type="submit"] {
+  background: linear-gradient(45deg, #225eb6, #2accfd 80%, #273c63 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8em 1.6em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 14px #35aed7dd;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(45deg, #50d4fe 0%, #177fa7 100%);
+  box-shadow: 0 0 26px #35aed7dd;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 480px) {
+  .home h1 { font-size: 2rem; }
+  .home h2 { font-size: 1.2rem; }
+  input[type="text"] { width: 180px; }
+}
+

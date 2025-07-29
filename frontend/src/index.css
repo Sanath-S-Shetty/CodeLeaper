@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Bitcount Prop Single', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,26 +15,69 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Bitcount Prop Single', monospace;
+
+  /* Space themed background */
+  background: radial-gradient(ellipse at bottom, #0b0c1a 0%, #000010 80%);
+  color: #e0e6ff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Starfield background with twinkle animation */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  pointer-events: none;
+  background:
+    radial-gradient(2.5px 2.5px at 10% 15%, #ffffff50, transparent),
+    radial-gradient(2px 2px at 35% 30%, #ffffff40, transparent),
+    radial-gradient(1.5px 1.5px at 50% 70%, #ffffff60, transparent),
+    radial-gradient(3px 3px at 80% 20%, #ffffff50, transparent),
+    radial-gradient(2px 2px at 65% 55%, #ffffff50, transparent);
+  background-repeat: repeat;
+  animation: twinkle 12s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-shadow:
+    0 0 8px #7f94ff,
+    0 0 15px #6870fa,
+    0 0 20px #5566ffcc;
+  color: #e0e6ff;
+  margin: 0 0 1rem 0;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #535bf2;
 }
 
 button {
@@ -43,11 +88,14 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: #cfdcff;
   cursor: pointer;
   transition: border-color 0.25s;
+  box-shadow: 0 0 8px #5566ff66;
 }
 button:hover {
   border-color: #646cff;
+  box-shadow: 0 0 14px #7a92ffcc;
 }
 button:focus,
 button:focus-visible {
@@ -59,10 +107,23 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+  body {
+    background: #ffffff;
+    color: #213547;
+  }
+  body::before {
+    display: none; /* Remove stars background in light mode for readability */
+  }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
+    color: #213547;
+    box-shadow: none;
+  }
+  button:hover {
+    box-shadow: none;
+    border-color: #747bff;
   }
 }

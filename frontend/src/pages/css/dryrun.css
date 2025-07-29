@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Bitcount Prop Single', monospace, 'Courier New', Courier, monospace;
+  color: #cde2ff;
+  background: radial-gradient(ellipse at center, #0b0c1c 0%, #000007 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated starry background overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(2.5px 2.5px at 10% 15%, #fffdfacc 90%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 45%, #badefb88 96%, transparent 100%),
+    radial-gradient(3px 3px at 60% 75%, #ffffffbb 99%, transparent 100%),
+    radial-gradient(2px 2px at 80% 30%, #b3d9ff88 95%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 55%, #e0f1ffcc 98%, transparent 100%);
+  background-repeat: repeat;
+  animation: twinkle 14s ease-in-out infinite alternate;
+  opacity: 0.9;
+}
+
+/* Star twinkle keyframes */
+@keyframes twinkle {
+  0%, 100% {opacity: 0.7;}
+  50% {opacity: 1;}
+}
+
+/* Headings and paragraphs */
+h1, h2, p {
+  color: #cde2ff;
+  text-shadow:
+    0 0 12px #4a90e2,
+    0 0 20px #2c77d3,
+    0 0 30px #1a5ca1aa;
+  margin-bottom: 0.6em;
+  letter-spacing: 1px;
+}
+
+/* Inputs and buttons base */
+input, button {
+  background: rgba(21, 101, 192, 0.85);
+  color: #e3f2fd;
+  border: 1.5px solid #39a2ff;
+  padding: 12px 16px;
+  margin: 8px;
+  border-radius: 8px;
+  box-shadow:
+    0 0 18px 3px rgba(57, 162, 255, 0.7),
+    inset 0 0 10px 2px rgba(70, 170, 255, 0.5);
+  transition: all 0.3s ease;
+  font-family: inherit;
+  user-select: none;
+}
+
+/* Placeholder text */
+input::placeholder {
+  color: #90caf9cc;
+}
+
+/* Button hover effect */
+button:hover {
+  background: #39a2ff;
+  color: #101c43;
+  cursor: pointer;
+  box-shadow:
+    0 0 25px 5px rgba(57, 162, 255, 0.9),
+    inset 0 0 14px 4px rgba(100, 195, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Preformatted text block */
+pre {
+  background: rgba(13, 24, 49, 0.75);
+  color: #cde2ff;
+  border: 1.5px solid #3e84f5;
+  padding: 16px;
+  overflow-x: auto;
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 0 22px 3px rgba(62, 132, 245, 0.5);
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 30px 4px rgba(30, 80, 160, 0.25);
+  background: rgba(10, 22, 45, 0.8);
+}
+
+/* Table headers and cells */
+th, td {
+  border: 1px solid #3e84f5;
+  padding: 12px 16px;
+  text-align: center;
+  color: #cde2ff;
+  user-select: text;
+}
+
+th {
+  background: rgba(30, 70, 130, 0.9);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #78a8ffaa;
+}
+
+/* Table row backgrounds */
+tr:nth-child(even) {
+  background: rgba(30, 70, 130, 0.4);
+}
+
+tr:hover {
+  background: rgba(57, 162, 255, 0.2);
+  transition: background 0.2s ease;
+}
+
+/* Forms layout */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(13, 24, 49, 0.7);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow:
+    0 0 40px 6px rgba(30, 80, 160, 0.4),
+    inset 0 0 20px 5px rgba(21, 101, 192, 0.75);
+  margin: 24px auto;
+  max-width: 500px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Button enhancements */
+button {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 12px 3px rgba(57, 162, 255, 0.8);
+}
+
+/* Description container */
+.description-container {
+  background: rgba(13, 24, 49, 0.75);
+  padding: 32px;
+  border-radius: 16px;
+  margin: 24px auto;
+  max-width: 900px;
+  box-shadow:
+    0 0 40px 5px rgba(30, 80, 160, 0.5),
+    inset 0 0 20px 7px rgba(21, 101, 192, 0.7);
+  color: #cce7ff;
+  font-family: 'Bitcount Prop Single', monospace, 'Courier New', Courier, monospace;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* Scrollbar for description container */
+.description-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.description-container::-webkit-scrollbar-thumb {
+  background-color: #3ea3ff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 3px #66b3ffbb;
+}
+
+.description-container::-webkit-scrollbar-thumb:hover {
+  background-color: #1e6fed;
+  box-shadow: 0 0 14px 6px #1e6fedcc;
+}

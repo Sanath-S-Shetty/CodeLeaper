@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { gemini } from '../components/ai';
 import { useLocation } from "react-router-dom";
-import './description.css';
+import './css/description.css';
+import Loading from '../components/loading'
+
 function Description() {
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");
 
-  const [description, setDescription] = useState("Loading...");
+  const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchDescription() {
       if (!query) {
-        setDescription("No quesiton provided.");
+        setDescription("No question provided.");
+        setLoading(false);
         return;
       }
+
+      setLoading(true);
+
 
    const prompt = `
 Generate a simplified description such that a 5th grader could understand it, for this LeetCode problem with problem no:
@@ -45,9 +52,11 @@ Do not reveal the solution. DO NOT SKIP ANY LABELS EVEN IF TITLE OR DESCRIPTION 
         const res = await gemini(prompt);
         const generatedDescription = res.candidates[0].content.parts[0].text;
         setDescription(generatedDescription);
+        setLoading(false);
       } catch (error) {
         console.error(error);
         setDescription("Failed to generate description.");
+        setLoading(false);
       }
     }
 
@@ -105,7 +114,13 @@ Do not reveal the solution. DO NOT SKIP ANY LABELS EVEN IF TITLE OR DESCRIPTION 
   const sections = parsedDescription();
 
   return (
+<>
+     { loading? <Loading/> : <>
     <div className="description-container">
+
+
+
+     
       <h1>{sections.title}</h1>
       <h2>Description:</h2>
       <p>{sections.description}</p>
@@ -137,8 +152,9 @@ Do not reveal the solution. DO NOT SKIP ANY LABELS EVEN IF TITLE OR DESCRIPTION 
     </div>
   </div>
 )}
-
-    </div>
+   
+    </div> </> }
+</>
   );
 }
 

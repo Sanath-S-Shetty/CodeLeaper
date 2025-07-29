@@ -8,7 +8,7 @@ const location = useLocation();
 const query = new URLSearchParams(location.search).get("query");
 
 const [message,setMessage] = useState("Loading...");
-const [code,setCode] = useState("Loading...");
+const [code,setCode] = useState("");
 const [bool,setBool] = useState(false);
 
 
@@ -55,7 +55,7 @@ async function fetchGowrong(prompt) {
   
   return (
     <div>
-      <h1>Go Wrong Page</h1>
+      <h1>Find the Mistakes</h1>
 
       {!bool ? (
         <form onSubmit={handle}>
@@ -73,7 +73,7 @@ async function fetchGowrong(prompt) {
         <Markdown>{message}</Markdown>
       )}
 
-      <p>This page is designed to go wrong intentionally.</p>
+     
     </div>
   );
 }

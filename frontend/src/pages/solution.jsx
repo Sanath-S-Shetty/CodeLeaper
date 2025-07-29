@@ -1,10 +1,12 @@
-import "./solution.css"
+import "./css/solution.css";
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 
 function Solution() {
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");
+
+  
 
   return (
     <div>

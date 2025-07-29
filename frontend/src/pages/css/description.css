@@ -1,0 +1,102 @@
+.description-container {
+  color: #cde2ff; /* softer glowing blue text */
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background-color: rgba(10, 20, 45, 0.7); /* dark translucent navy */
+  border-radius: 12px;
+  box-shadow:
+    0 0 30px 3px rgba(36, 138, 222, 0.5), /* blue glow */
+    inset 0 0 12px 1px rgba(21, 101, 192, 0.7); /* inner nebula glow */
+  line-height: 1.7;
+  overflow-y: auto;
+  max-height: 80vh;
+  transition: box-shadow 0.3s ease;
+  font-family: 'Bitcount Prop Single', monospace, Consolas, 'Courier New', monospace;
+  position: relative;
+  z-index: 1;
+}
+
+.description-container * {
+  color: #cce7ff !important; /* consistent bright blue text */
+  text-shadow:
+    0 0 6px #3a82ffcc,
+    0 0 15px #1f52d3aa;
+}
+
+.description-container:hover {
+  box-shadow:
+    0 0 45px 6px rgba(41, 182, 246, 0.7),
+    inset 0 0 25px 3px rgba(21, 101, 192, 0.85);
+}
+
+.description-container h1 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #a7cdfd;
+  border-bottom: 3px solid #42aaff;
+  padding-bottom: 6px;
+  text-shadow:
+    0 0 10px #73b8ffcc,
+    0 0 20px #3cadffcc;
+}
+
+.description-container p {
+  font-size: 1.1em;
+  background: transparent;
+  margin-bottom: 1.5em;
+  max-height: 250px;
+  overflow-y: auto;
+  color: #cce7ff;
+  white-space: pre-line;
+  text-shadow:
+    0 0 6px #5ea8ffcc;
+}
+
+.description-container h3 {
+  margin-top: 30px;
+  font-size: 1.4em;
+  color: #4a9dff;
+  font-weight: 600;
+  text-shadow: 0 0 8px #3189ffdd;
+}
+
+.description-container ul {
+  list-style-type: disc;
+  padding-left: 25px;
+}
+
+.description-container li {
+  margin: 10px 0;
+  text-shadow:
+    0 0 5px #2a6ad4aa;
+}
+
+.description-container .example-block {
+  background-color: rgba(15, 80, 160, 0.2);
+  border-left: 4px solid #4bb0ff;
+  padding: 12px 18px;
+  margin-top: 12px;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: auto;
+  color: #97c6fc;
+  text-shadow:
+    0 0 5px #50aaffcc;
+}
+
+/* Custom scrollbar with glowing blue */
+.description-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.description-container::-webkit-scrollbar-thumb {
+  background-color: #3ea3ff; /* bright blue */
+  border-radius: 4px;
+  box-shadow: 0 0 8px #66b3ffaa;
+}
+
+.description-container::-webkit-scrollbar-thumb:hover {
+  background-color: #1e6fed;
+  box-shadow: 0 0 14px #1e6fedcc;
+}
