@@ -2,12 +2,14 @@ import Slides from '../components/slides.jsx';
 import { useLocation } from 'react-router-dom';
 import {useState, useEffect } from 'react';
 import {gemini} from '../components/ai';
+import Loading from '../components/loading';
 
 function Hints() {
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");
 
       const[hint,setHint] = useState("");
+      const[loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -16,8 +18,11 @@ function Hints() {
       const generatedhint="";
       if (!query) {
         setHint("No quesiton provided.");
+        setLoading(false);
         return;
       }
+
+      setLoading(true);
 
   const prompt = `
 Generate 4 distinct hints for the LeetCode problem with problem number: "${query}".
@@ -47,6 +52,9 @@ Do NOT reveal the solution or any code, only small helpful hints.
         console.error(error);
         setHint("Failed to generate hint.");
       }
+      finally{
+        setLoading(false);
+      }
     }
 
     fetchDescription();
@@ -62,12 +70,16 @@ Do NOT reveal the solution or any code, only small helpful hints.
 
   return (
     <div>
-
+      {loading ? <Loading /> : 
+      <>
+      
+      <Slides hints={hint} />
+    
+      </>}
 
       
-        <Slides hints={hint} />
-    
-      <p>This page contains hints for the project.</p>
+
+     
     </div>
   );
 }

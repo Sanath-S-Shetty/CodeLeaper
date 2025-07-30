@@ -1,7 +1,7 @@
 .description-container {
   color: #cde2ff; /* softer glowing blue text */
   max-width: 800px;
-  margin: 40px auto;
+  margin: 10px auto;
   padding: 30px 25px;
   background-color: rgba(10, 20, 45, 0.7); /* dark translucent navy */
   border-radius: 12px;

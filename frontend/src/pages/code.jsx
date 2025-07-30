@@ -16,8 +16,8 @@ function Code() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-
 function parseResponse(text) {
+  // Split into lines, trim only end to preserve any leading code whitespace
   const lines = text.split('\n').map(l => l.trimEnd());
   const sections = {
     title: "",
@@ -29,71 +29,48 @@ function parseResponse(text) {
     optimization: "",
   };
 
-  // Find headers for code sections
-  const idxJava = lines.findIndex(l => l.toLowerCase().includes("java code"));
-  const idxCpp = lines.findIndex(l => l.toLowerCase().includes("c++ code"));
-  const idxPython = lines.findIndex(l => l.toLowerCase().includes("python code"));
+  // Find all section headers and their indexes
+  const sectionMap = {};
+  for (let i = 0; i < lines.length; i++) {
+    const l = lines[i].toLowerCase();
+    if (l === "java code") sectionMap.java = i;
+    else if (l === "c++ code") sectionMap.cpp = i;
+    else if (l === "python code") sectionMap.python = i;
+    else if (l.startsWith("brief explanation")) sectionMap.explanation = i;
+    else if (l.startsWith("time and space")) sectionMap.complexity = i;
+    else if (l.startsWith("optimization") || l.startsWith("optimization suggestion")) sectionMap.optimization = i;
+  }
 
-  // Title
-  sections.title = lines[0];
+  // Title: everything before first code section header
+  const firstHeaderIdx = Math.min(...Object.values(sectionMap).filter(i => typeof i === "number"));
+  sections.title = lines.slice(0, firstHeaderIdx).join(' ').trim();
 
-  // Java section
-  if (idxJava !== -1) {
-    const javaStart = idxJava + 1;
-    const javaEnd = (idxCpp !== -1) ? idxCpp : (idxPython !== -1 ? idxPython : lines.length);
-    sections.java = lines.slice(javaStart, javaEnd).join('\n');
+  // Helper: get lines between two indexes
+  function between(start, end) {
+    if (typeof start !== "number") return "";
+    const e = (typeof end === "number") ? end : lines.length;
+    return lines.slice(start + 1, e).join('\n').trim();
   }
-  // C++ section
-  if (idxCpp !== -1) {
-    const cppStart = idxCpp + 1;
-    const cppEnd = (idxPython !== -1) ? idxPython : lines.length;
-    sections.cpp = lines.slice(cppStart, cppEnd).join('\n');
-  }
-  // Python section
-  if (idxPython !== -1) {
-    const pyStart = idxPython + 1;
-    // Get lines until we hit an explanation, complexity, or optimization label,
-    // or lines that clearly are not code (lacking indentation, etc).
-    let pyEnd = lines.length;
-    for (let i = pyStart; i < lines.length; i++) {
-      const l = lines[i];
-      if (/explanation|complexity|optimization/i.test(l)) {
-        pyEnd = i;
-        break;
-      }
-    }
-    // Main python code
-    sections.python = lines.slice(pyStart, pyEnd).join('\n');
-    // Remainder is explanation/etc
-    const rest = lines.slice(pyEnd).join('\n');
-    if (rest) {
-      // Split remaining by heading/keywords
-      const exMatch = rest.match(/(explanation.*?)(time and space.*?)(optimization.*)/is);
-      if (exMatch) {
-        sections.explanation = exMatch[1].replace(/explanation.*?:?/i, "").trim();
-        sections.complexity = exMatch[2].replace(/time and space.*?:?/i, "").trim();
-        sections.optimization = exMatch[3].replace(/optimization.*?:?/i, "").trim();
-      } else {
-        // Try single splits if no triple match
-        const [expBlock, restBlock] = rest.split(/time and space.*?:?/i, 2);
-        if (restBlock !== undefined) {
-          sections.explanation = expBlock.replace(/explanation.*?:?/i, "").trim();
-          const [compBlock, optBlock] = restBlock.split(/optimization.*?:?/i, 2);
-          if (optBlock !== undefined) {
-            sections.complexity = compBlock.trim();
-            sections.optimization = optBlock.trim();
-          } else {
-            sections.complexity = restBlock.trim();
-          }
-        } else {
-          sections.explanation = rest.replace(/explanation.*?:?/i, "").trim();
-        }
-      }
-    }
-  }
+
+  sections.java = between(sectionMap.java, sectionMap.cpp);
+  sections.cpp = between(sectionMap.cpp, sectionMap.python);
+  // Take explanation, complexity, optimization blocks
+  const explanationEnd = sectionMap.complexity ?? sectionMap.optimization ?? lines.length;
+  const complexityEnd = sectionMap.optimization ?? lines.length;
+  sections.python = between(sectionMap.python, sectionMap.explanation ?? sectionMap.complexity ?? sectionMap.optimization);
+
+  sections.explanation = (typeof sectionMap.explanation === "number") ?
+    between(sectionMap.explanation, sectionMap.complexity ?? sectionMap.optimization) : "";
+
+  sections.complexity = (typeof sectionMap.complexity === "number") ?
+    between(sectionMap.complexity, sectionMap.optimization) : "";
+
+  sections.optimization = (typeof sectionMap.optimization === "number") ?
+    lines.slice(sectionMap.optimization + 1).join('\n').trim() : "";
 
   return sections;
 }
+
 
 
   useEffect(() => {
@@ -113,21 +90,29 @@ function parseResponse(text) {
       setRawCodeText("");
 
       const prompt = `
-Generate solution code in java C++ and python for the leetcode problem with problem no:
+Give the solution for LeetCode problem number: ${query}
 
-"${query}" 
+Strict format only — NO markdown, NO code blocks, just plain text as in this example:
 
-Follow this format STRICTLY WITHOUT any markdown syntax:
-
-title of the question
+[Title of the problem]
 
 java code
-c++ code
-python code
+<your Java code here. Do not include any other language code here.>
 
-Explanaiton: brief explanation of the solution
-Time and Space Complexity: time and space complexity of the solution
-Optimization: optimization suggestion for solution
+c++ code
+<your C++ code here. Do not include any other language code here.>
+
+python code
+<your Python code here. Do not include any other language code here.>
+
+brief explanation of the solution
+
+time and space complexity of the solution
+
+optimization suggestion for solution
+
+NEVER put more than one language in a code section. NO markdown. NO triple backticks. Each code only in its own section.
+
 `;
 
       try {
@@ -231,7 +216,7 @@ Optimization: optimization suggestion for solution
       )}
 
       <p style={{ marginTop: '2rem', fontStyle: 'italic', color: '#99bbff' }}>
-        This page contains the generated solution code and explanation.
+       
       </p>
     </div>
   );
