@@ -24,7 +24,7 @@ function Home() {
     <div className="home">
        <h1>Get help to ace your DSA journey</h1>
       
-      <h2>Enter the Question No or title</h2>
+      <h2>Enter the LeatCode Question No or title</h2>
 
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Question No or title" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
