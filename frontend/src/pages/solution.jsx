@@ -15,7 +15,7 @@ function Solution() {
         <Link className="box" id="hints" to={`/hints?query=${query}`}>hints</Link>
       </div>
       <div className="row">
-        <Link className="box" id="go wrong" to={`/gowrong?query=${query}`}>go wrong</Link>
+        <Link className="box" id="go wrong" to={`/gowrong?query=${query}`}>Find errors</Link>
         <Link className="box" id="dry run" to={`/dryrun?query=${query}`}>dry run</Link>
       </div>
       <div className="row">
