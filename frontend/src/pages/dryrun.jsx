@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import { gemini } from '../components/ai'; // Make sure this is your Gemini API call function
+import { gemini } from '../components/ai'; 
 import './css/dryrun.css';
 import Loading from '../components/loading'; // Assuming you have a Loading component
 
