@@ -46,7 +46,13 @@ nav h1 {
   user-select: none;
 }
 
-nav ul {
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
@@ -54,7 +60,7 @@ nav ul {
   padding: 0;
 }
 
-nav ul li a {
+.nav-links li a {
   text-decoration: none;
   color: #cce7ff;
   font-size: 1rem;
@@ -66,7 +72,7 @@ nav ul li a {
   user-select: none;
 }
 
-nav ul li a::before {
+.nav-links li a::before {
   content: "";
   position: absolute;
   top: -4px;
@@ -81,44 +87,111 @@ nav ul li a::before {
   z-index: -1;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover {
   background: linear-gradient(90deg, #3bc8ff 0%, #00d3f5 100%);
   color: #09396d;
   box-shadow: 0 8px 20px rgba(59, 200, 255, 0.8);
 }
 
-nav ul li a:hover::before {
+.nav-links li a:hover::before {
   opacity: 1;
+}
+
+/* Hamburger button styling */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  z-index: 1001;
+  box-shadow: none; /* override default button style */
+}
+
+.hamburger:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.hamburger .line {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #a9c7ff;
+  margin: 5px 0;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+/* Hamburger animation */
+.hamburger.active .line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 600px) {
   nav {
+    padding: 0 1.5rem;
+    height: 64px;
+  }
+
+  .nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 62px; /* aligns right after border-bottom */
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
     flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: 1rem;
+    align-items: center;
+    background: rgba(10, 18, 40, 0.95);
     backdrop-filter: saturate(180%) blur(25px);
     -webkit-backdrop-filter: saturate(180%) blur(25px);
+    border-bottom: 2px solid #245284;
+    transition: height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding: 0;
+    gap: 1.2rem;
+    box-sizing: border-box;
+    z-index: 999;
   }
 
-  nav h1 {
-    margin-bottom: 1rem;
+  .nav-links.active {
+    height: 180px;
+    padding: 1.5rem 0;
   }
 
-  nav ul {
-    flex-direction: column;
-    gap: 1rem;
+  .nav-links li {
     width: 100%;
+    text-align: center;
   }
 
-  nav ul li {
-    width: 100%;
-  }
-
-  nav ul li a {
-    width: 100%;
-    text-align: left;
-    padding-left: 0;
+  .nav-links li a {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 80%;
+    box-sizing: border-box;
   }
 }

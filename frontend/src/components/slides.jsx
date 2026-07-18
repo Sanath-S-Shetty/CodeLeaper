@@ -1,29 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './slides.css'; 
 
 function Slides({ hints }) {
   const totalCards = 4;
   const [currentCard, setCurrentCard] = useState(0);
-  const cardsRef = useRef([]);
-const lines = hints.split("\n").map(line => line.trim()).filter(Boolean);
+  const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
 
-// First line is the Problem Title
-const title = lines.length > 0 ? lines[0] : "No Title Found";
+  const lines = hints.split("\n").map(line => line.trim()).filter(Boolean);
 
-// Filter lines starting with "Hint" and remove the label e.g. "Hint 1:"
-const hint = lines
-  .filter(line => line.startsWith("Hint"))
-  .map(line => line.replace(/^Hint \d+:\s*/, ""));
+  // First line is the Problem Title
+  const title = lines.length > 0 ? lines[0] : "No Title Found";
 
-// Optionally pad hints to 4 entries if needed
-while (hint.length < 4) {
-  hint.push("No further hint available.");
-}
+  // Filter lines starting with "Hint" and remove the label e.g. "Hint 1:"
+  const hint = lines
+    .filter(line => line.startsWith("Hint"))
+    .map(line => line.replace(/^Hint \d+:\s*/, ""));
 
-
-
-
-  const isTouchDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  // Optionally pad hints to 4 entries if needed
+  while (hint.length < 4) {
+    hint.push("No further hint available.");
+  }
 
   const handleSwipe = (direction) => {
     let newCurrent = currentCard;
@@ -35,51 +31,32 @@ while (hint.length < 4) {
     setCurrentCard(newCurrent);
   };
 
-  const swipedetect = (el, callback) => {
-    let swipedir, startX, startY, distX, distY, startTime, elapsedTime;
-    const threshold = 100; // min distance
-    const restraint = 100; // max perpendicular distance
-    const allowedTime = 500; // max time
-
-    const handleswipe = callback || function (swipedir) { };
-
-    el.addEventListener('touchstart', function (e) {
-      const touchobj = e.changedTouches[0];
-      swipedir = 'none';
-      startX = touchobj.pageX;
-      startY = touchobj.pageY;
-      startTime = new Date().getTime();
-      e.preventDefault();
-    }, false);
-
-    el.addEventListener('touchmove', function (e) {
-      e.preventDefault();
-    }, false);
-
-    el.addEventListener('touchend', function (e) {
-      const touchobj = e.changedTouches[0];
-      distX = touchobj.pageX - startX;
-      distY = touchobj.pageY - startY;
-      elapsedTime = new Date().getTime() - startTime;
-      if (elapsedTime <= allowedTime) {
-        if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-          swipedir = (distX < 0) ? 'left' : 'right';
-        }
-      }
-      handleswipe(swipedir);
-      e.preventDefault();
-    }, false);
+  const handleTouchStart = (e) => {
+    const touch = e.changedTouches[0];
+    touchStartRef.current = {
+      x: touch.pageX,
+      y: touch.pageY,
+      time: new Date().getTime()
+    };
   };
 
-  useEffect(() => {
-    if (isTouchDevice) {
-      cardsRef.current.forEach(card => {
-        swipedetect(card, (dir) => {
-          handleSwipe(dir);
-        });
-      });
+  const handleTouchEnd = (e) => {
+    const touch = e.changedTouches[0];
+    const distX = touch.pageX - touchStartRef.current.x;
+    const distY = touch.pageY - touchStartRef.current.y;
+    const elapsedTime = new Date().getTime() - touchStartRef.current.time;
+
+    const threshold = 50; // min distance
+    const restraint = 100; // max perpendicular distance
+    const allowedTime = 300; // max time
+
+    if (elapsedTime <= allowedTime) {
+      if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+        const direction = (distX < 0) ? 'left' : 'right';
+        handleSwipe(direction);
+      }
     }
-  }, [currentCard]);
+  };
 
   const handleClick = (index, isNext) => {
     if (isNext) {
@@ -89,31 +66,34 @@ while (hint.length < 4) {
     }
   };
 
+  const isTouchDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const cardOffset = window.innerWidth < 600 ? 20 : 60;
+
   return (
- <main style={{ position: "relative", height: "600px" }}>
-    {Array.from({ length: totalCards }).map((_, idx) => {
-      // Calculate horizontal position relative to currentCard
-      const offset = idx - currentCard;
-      return (
-        <div
-          key={idx}
-          className={`cards ${idx === currentCard ? 'currentCard' : 'notCurrentCard'}`}
-          style={{
-            zIndex: idx === currentCard ? 999 : 998 - Math.abs(offset),
-            transform: `translateX(${offset * 60}px) scale(${idx === currentCard ? 1 : 0.95})`,
-            opacity: idx === currentCard ? 1 : 0.7,
-            pointerEvents: idx === currentCard ? "auto" : "none",
-            transition: "transform 0.3s, opacity 0.3s",
-          }}
-          ref={el => cardsRef.current[idx] = el}
-          onClick={idx === currentCard && !isTouchDevice ? () => handleClick(idx, true) : undefined}
-        >
-            
-          <h2>{hint[idx]}</h2>
-        </div>
-      );
-    })}
-  </main>
+    <main style={{ position: "relative", height: "450px", marginTop: "20px" }}>
+      {Array.from({ length: totalCards }).map((_, idx) => {
+        // Calculate horizontal position relative to currentCard
+        const offset = idx - currentCard;
+        return (
+          <div
+            key={idx}
+            className={`cards ${idx === currentCard ? 'currentCard' : 'notCurrentCard'}`}
+            style={{
+              zIndex: idx === currentCard ? 999 : 998 - Math.abs(offset),
+              transform: `translateX(${offset * cardOffset}px) scale(${idx === currentCard ? 1 : 0.95})`,
+              opacity: idx === currentCard ? 1 : 0.7,
+              pointerEvents: idx === currentCard ? "auto" : "none",
+              transition: "transform 0.3s, opacity 0.3s",
+            }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onClick={idx === currentCard && !isTouchDevice ? () => handleClick(idx, true) : undefined}
+          >
+            <h2>{hint[idx]}</h2>
+          </div>
+        );
+      })}
+    </main>
   );
 }
 

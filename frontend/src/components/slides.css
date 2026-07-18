@@ -77,3 +77,20 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 600px) {
+  .cards {
+    height: auto;
+    min-height: 280px;
+    max-height: 60vh;
+    padding: 24px 20px;
+    top: 15%;
+    border-radius: 14px;
+    overflow-y: auto; /* Allow reading long hints if they still exceed card bounds */
+  }
+
+  .cards h2 {
+    font-size: 1.25rem;
+    max-width: 95%;
+  }
+}

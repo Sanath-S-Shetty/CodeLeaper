@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
 
-/* GLOBAL BASE */
-body, html {
-  margin-top: 25;
-  padding: 0; 
-  height: 100%;
-  min-height: 100vh;
-  background: radial-gradient(ellipse at bottom, #0b0c1a 0%, #000010 80%);
-  font-family: 'Bitcount Prop Single', monospace, Consolas, 'Courier New', monospace;
-  color: #cde2ff;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 /* Code container styling - glowing blue card */
 .code-container {
@@ -178,5 +165,47 @@ body, html {
   }
   .code-container pre {
     font-size: 0.95rem;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 90%;
+  max-width: 500px;
+  background: rgba(13, 24, 49, 0.75);
+  color: #cde2ff;
+  border: 1.5px solid #3e84f5;
+  padding: 16px;
+  border-radius: 12px;
+  font-family: monospace;
+  box-shadow: 0 0 22px 3px rgba(62, 132, 245, 0.5);
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #3bc8ff;
+  box-shadow: 0 0 30px 5px rgba(59, 200, 255, 0.7);
+}
+
+@media (max-width: 600px) {
+  textarea {
+    width: 95%;
+    font-size: 0.95rem;
+  }
+  .code-container {
+    padding: 20px 15px 30px 15px;
+    margin: 20px 8px;
+    max-height: 75vh;
   }
 }

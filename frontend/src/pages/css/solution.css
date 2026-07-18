@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
 
-body {
-  margin: 0;
-  min-height: 100%;
-  font-family: 'Bitcount Prop Single', sans-serif;
-  color: #cde2ff;
-  /* Nearly pure black with deep blue vignette for cosmic depth */
-  background: radial-gradient(ellipse at center, #171926 0%, #000008 100%);
-  position: relative;
-  overflow-x: hidden;
-}
 
 /* Richer contrasting starfield on deep black */
 body::before {
@@ -131,4 +121,24 @@ h1, h2, p {
   margin-bottom: 0.8em;
   letter-spacing: 1px;
   user-select: none;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 15px;
+    margin: 16px 8px;
+  }
+  .row {
+    margin: 16px 0;
+    gap: 1rem;
+  }
+  .box {
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 16px;
+    letter-spacing: 1px;
+  }
 }

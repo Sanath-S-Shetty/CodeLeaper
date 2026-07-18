@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
 
-/* GLOBAL BASE */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  min-height: 100vh;
-  background: radial-gradient(ellipse at bottom, #0b0c1a 0%, #000010 80%);
-  font-family: 'Bitcount Prop Single', monospace, Consolas, 'Courier New', monospace;
-  color: #cde2ff;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 /* Code container styling - glowing blue card */
 .code-container {

@@ -1,18 +1,40 @@
-
+import { useState } from 'react';
 import './navbar.css';
-import Home from '../pages/home';
 import { Link } from 'react-router-dom';
-import about from '../pages/about'; 
-
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav >
-      <h1>CodeLeaper</h1>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+    <nav className={isOpen ? 'nav-open' : ''}>
+      <div className="nav-container">
+        <h1>
+          <Link to="/" onClick={closeMenu} style={{ textDecoration: 'none', color: 'inherit' }}>
+            CodeLeaper
+          </Link>
+        </h1>
+        <button 
+          className={`hamburger ${isOpen ? 'active' : ''}`} 
+          onClick={toggleMenu}
+          aria-label="Toggle Navigation"
+        >
+          <span className="line"></span>
+          <span className="line"></span>
+          <span className="line"></span>
+        </button>
+      </div>
+      <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
+        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+        <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+        <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
       </ul>
     </nav>
   );

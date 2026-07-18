@@ -1,28 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
 
-/* Global Reset to Prevent Unwanted Scrollbars */
-html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%;
-  overflow: hidden;      /* Absolutely no scrollbars: vertical or horizontal */
-}
-
 .home {
   position: relative;
   z-index: 1;
-  height: 100dvh;
-  height: 100vh;
-  width: 100vw;
-  max-width: 100vw;
+  min-height: 70vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
-  padding-right: 28vh;
   display: flex;
   flex-direction: column;
   align-items: center;
- padding-top: 20vh;
-  overflow: hidden;
+  padding-top: 10vh;
+  overflow: visible;
   font-family: 'Bitcount Prop Single', sans-serif;
 }
 
@@ -125,9 +115,35 @@ button[type="submit"]:hover {
 }
 
 /* Responsive for smaller screens */
-@media (max-width: 480px) {
-  .home h1 { font-size: 2rem; }
-  .home h2 { font-size: 1.2rem; }
-  input[type="text"] { width: 180px; }
+@media (max-width: 600px) {
+  .home {
+    padding-top: 5vh;
+  }
+  .home h1 { 
+    font-size: 1.8rem; 
+    padding: 0 1rem;
+  }
+  .home h2 { 
+    font-size: 1.1rem; 
+    padding: 0 1rem;
+    margin-bottom: 1.5em;
+  }
+  form {
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  input[type="text"] { 
+    width: 100%; 
+    max-width: 320px;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  button[type="submit"] {
+    width: 100%;
+    max-width: 320px;
+    font-size: 1rem;
+  }
 }
 

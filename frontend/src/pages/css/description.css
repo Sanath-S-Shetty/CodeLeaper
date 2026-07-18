@@ -100,3 +100,26 @@
   background-color: #1e6fed;
   box-shadow: 0 0 14px #1e6fedcc;
 }
+
+@media (max-width: 600px) {
+  .description-container {
+    padding: 20px 15px;
+    margin: 10px 8px;
+    max-height: 75vh;
+    box-sizing: border-box;
+  }
+  .description-container h1 {
+    font-size: 1.5rem;
+  }
+  .description-container h3 {
+    font-size: 1.15rem;
+    margin-top: 20px;
+  }
+  .description-container p {
+    font-size: 0.95rem;
+  }
+  .description-container .example-block {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+}

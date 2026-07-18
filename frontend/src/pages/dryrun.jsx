@@ -80,19 +80,20 @@ Give ONLY the markdown table, same format as above (no code block, no explanatio
     <div>
       <h1>Dry Run Page</h1>
       {!showResult ? (
-        <form onSubmit={handle}>
+        <form onSubmit={handle} className="dryrun-form">
           <input
+            className="dryrun-input"
             type="text"
             placeholder="Enter the input"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
           <input
+            className="dryrun-input dryrun-code-input"
             type="text"
             placeholder="Paste the code here"
             value={inputCode}
             onChange={(e) => setInputCode(e.target.value)}
-            style={{ minWidth: 300, fontFamily: "monospace" }}
           />
           <button type="submit" name="run">Run</button>
         </form>
