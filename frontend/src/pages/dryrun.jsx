@@ -53,16 +53,20 @@ Give ONLY the markdown table, same format as above (no code block, no explanatio
   }
 
   async function fetchdryrun(prompt) {
-    let generatedDescription = "";
     try {
       const res = await gemini(prompt);
-      // Most Gemini APIs:
-      generatedDescription = res.candidates?.[0]?.content?.parts?.[0]?.text || "Could not parse AI response.";
+      if (res?.error) {
+        throw new Error(res.error.message || "API Error");
+      }
+      const generatedDescription = res.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!generatedDescription) {
+        throw new Error("Empty response from AI");
+      }
       setDryrun(generatedDescription);
       setShowResult(true);
     } catch (error) {
       console.error(error);
-      setDryrun("Failed to generate dry run table.");
+      setDryrun(`Failed to generate dry run table: ${error.message || "Unknown error"}`);
       setShowResult(true);
     } finally {
       setIsLoading(false);

@@ -46,11 +46,17 @@ Do NOT reveal the solution or any code, only small helpful hints.
 
       try {
         const res = await gemini(prompt);
-        const generatedhint = res.candidates[0].content.parts[0].text;
+        if (res?.error) {
+          throw new Error(res.error.message || "API Error");
+        }
+        const generatedhint = res?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!generatedhint) {
+          throw new Error("Empty response from AI");
+        }
         setHint(generatedhint);
       } catch (error) {
         console.error(error);
-        setHint("Failed to generate hint.");
+        setHint(`Failed to generate hint: ${error.message || "Unknown error"}`);
       }
       finally{
         setLoading(false);

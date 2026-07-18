@@ -50,12 +50,18 @@ Do not reveal the solution. DO NOT SKIP ANY LABELS EVEN IF TITLE OR DESCRIPTION 
 
       try {
         const res = await gemini(prompt);
-        const generatedDescription = res.candidates[0].content.parts[0].text;
+        if (res?.error) {
+          throw new Error(res.error.message || "API Error");
+        }
+        const generatedDescription = res?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!generatedDescription) {
+          throw new Error("Empty response from AI");
+        }
         setDescription(generatedDescription);
         setLoading(false);
       } catch (error) {
         console.error(error);
-        setDescription("Failed to generate description.");
+        setDescription(`Failed to generate description: ${error.message || "Unknown error"}`);
         setLoading(false);
       }
     }

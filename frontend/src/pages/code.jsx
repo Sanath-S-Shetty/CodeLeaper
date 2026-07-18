@@ -117,6 +117,9 @@ NEVER put more than one language in a code section. NO markdown. NO triple backt
 
       try {
         const res = await gemini(prompt);
+        if (res?.error) {
+          throw new Error(res.error.message || "API Error");
+        }
         const text = res?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (!text) throw new Error("Empty response");
         if (isMounted) {
@@ -126,7 +129,7 @@ NEVER put more than one language in a code section. NO markdown. NO triple backt
       } catch (err) {
         console.error(err);
         if (isMounted) {
-          setError("Failed to generate code.");
+          setError(`Failed to generate code: ${err.message || "Unknown error"}`);
           setLoading(false);
         }
       }

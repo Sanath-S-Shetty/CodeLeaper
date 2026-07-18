@@ -48,12 +48,17 @@ please dont give any other information other than the mistakes in the code.
   try {
     const res = await gemini(prompt);
     console.log('DEBUG: Gemini raw response:', res);
-    // Fix this line:
-    const generatedMessage = res.candidates[0].content.parts[0].text;
+    if (res?.error) {
+      throw new Error(res.error.message || "API Error");
+    }
+    const generatedMessage = res?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!generatedMessage) {
+      throw new Error("Empty response from AI");
+    }
     setMessage(generatedMessage);
   } catch (error) {
     console.error(error);
-    setMessage("Failed to generate response.");
+    setMessage(`Failed to generate response: ${error.message || "Unknown error"}`);
   } finally {
     setLoading(false);
   }
