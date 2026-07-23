@@ -16,8 +16,8 @@ CodeLeaper transforms the way you learn and debug code by breaking down complex 
 ### 🏗️ Architecture & Data Flow
 *   **User Navigation:** The user initiates a session from the primary home interface, inputting their target LeetCode problem.
 *   **Problem Breakdown:** The application routes the user through a structured flow: viewing the simplified problem (`description.jsx`), analyzing the base code (`code.jsx`), and requesting contextual clues (`hints.jsx`).
-*   **AI & Logic Processing:** When a user is stuck or evaluating edge cases, the custom AI module (`ai.js`) powers the Advanced Code Analyzer (`gowrong.jsx`) to generate insights and highlight potential pitfalls in the logic.
-*   **Visual Execution:** Users simulate code execution via the interactive Dry Run interface (`dryrun.jsx`), which utilizes reusable, animated slide components (`slides.jsx`) for step-by-step clarity.
+*   **AI & Logic Processing:** When a user is stuck or evaluating edge cases, the AI module (`ai.js`) powers the Advanced Code Analyzer (`gowrong.jsx`) to generate insights and highlight potential pitfalls in the logic.
+*   **Visual Execution:** Users simulate code execution via the interactive Dry Run interface (`dryrun.jsx`).
 *   **Expert Review:** Users can explore the optimal approach and commented breakdown in the solution view (`solution.jsx`).
 
 ### 🛠️ Tech Stack
@@ -26,7 +26,3 @@ CodeLeaper transforms the way you learn and debug code by breaking down complex 
 *   **AI Integration:** Making use of Gemini API
 *   **Core UI Components:** Custom-built loading states, navigation bars, and interactive presentation slides
 
-### 🌐 Deployment Infrastructure
-This application is designed for high-performance static hosting:
-*   **Frontend Distribution:** Built to be deployed as a highly optimized Static Site using Vite's fast build pipeline.
-*   **Routing Optimization:** Configured for strict environment routing alongside standard client-side URL rewriting to ensure seamless Single Page Application (SPA) navigation on page refreshes.
